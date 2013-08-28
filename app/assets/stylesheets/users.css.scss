@@ -1,3 +1,46 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.user-row{
+  border-radius: 4px;
+  border: 1px solid blue;
+  background-color: rgba(255,150,0,1);
+  color: white;
+}
+
+.user-row_name-gravatar{
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.user-row_name-gravatar a{
+  color: rgb(255,255,255);
+}
+
+.user-row_name-gravatar li{
+  margin-right: none;
+}
+.user-row_name-gravatar li,img{
+  display: table-row;
+  float: none;
+}
+.user-row_user-info{
+  text-align: center;
+  margin: auto;
+  display: block;
+}
+.user-row_user-info li{
+  list-style-type: none;
+}
+
+.divider-row{
+  margin-top: 0.8em;
+}
+
+.row{
+  margin-left: 0;
+}

@@ -1,0 +1,23 @@
+<div class="user-row row" >
+    <ul class="user-row_name-gravatar span1">
+      <li><%= gravatar_for user, size: 60 %></li>
+      <li><%= link_to user.name, user %></li>
+    </ul> 
+    <div class="user-row_user-info span9">
+    <% if current_user.admin? && !current_user?(user) %>
+      <div class = "span7" style="float:left">
+        <li><%= user.email %></li>
+      </div>
+
+      <div class="span1" style="float:right">
+        <%= link_to "", user , class: "icon-remove icon-white", method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      </div>
+    <% else %>
+      <ul class = "span9">
+        <li><%= user.email %></li>
+      </ul>
+    <% end %>
+    </div>
+</div>
+<div class="divider-row"> </div>
