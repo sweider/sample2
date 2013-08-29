@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
     # Это предварительное решение. См. полную реализацию в "Following users".
     Micropost.where("user_id = ?", id)
   end
+  
   private
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
