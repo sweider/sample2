@@ -11,6 +11,12 @@ namespace :db do
                          password: "q1w2e3r4t5",
                          password_confirmation: "q1w2e3r4t5")
     admin.toggle!(:admin)
+
+    users = User.all(limit: 6)
+    50.times do
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.microposts.create!(content: content) }
+    end
     
     99.times do |n|
       name  = Faker::Name.name
@@ -21,5 +27,7 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+
   end
 end

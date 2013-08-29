@@ -25,6 +25,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:microposts) }
 
   it { should be_valid }
 
@@ -96,5 +97,20 @@ describe User do
         it { should_not == user_for_invalid_password }
         specify { user_for_invalid_password.should be_false  } 
       end        
+  end
+
+
+  describe "micropost associatins" do 
+    before { @user.save }
+
+    let!(:older_post) { FactoryGirl.create(:micropost,
+     user: @user, created_at 1.day.ago) }
+
+    let!(:newer_post) { FactoryGirl.create(:micropost,
+     user: @user, created_at 1.hour.ago) }
+
+    it "should have microposts in right order" do
+      @user.microposts.should == [:newer_post, :older_post ]
+    end
   end
 end
