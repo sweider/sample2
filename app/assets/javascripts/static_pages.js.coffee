@@ -10,7 +10,8 @@ jQuery(document).ready ->
     symbs_left = (if symbs_left >= 0 then symbs_left else 0)
     symbs = $("#symbs")
     if symbs.length is 0
-      symbs_left_node = $("<p id='message' class='green'> <span id='symbs'>" + symbs_left + "</span> symbs left</p>")
+      symbs_left_node = $("<p id='message' class='green'> <span id='symbs'>"
+           + symbs_left + "</span> symbs left</p>")
       $(".field").append symbs_left_node
     else
       symbs.text symbs_left
