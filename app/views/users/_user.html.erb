@@ -5,7 +5,7 @@
     </ul> 
     <div class="user-row_user-info span9">
     <% if current_user.admin? && !current_user?(user) %>
-      <div class = "span7" style="float:left">
+      <div class = "span7" style="float:left;">
         <li><%= user.email %></li>
       </div>
 
