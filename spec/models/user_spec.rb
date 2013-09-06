@@ -104,13 +104,15 @@ describe User do
     before { @user.save }
 
     let!(:older_post) { FactoryGirl.create(:micropost,
-     user: @user, created_at 1.day.ago) }
+     user: @user, created_at: 1.day.ago) }
 
     let!(:newer_post) { FactoryGirl.create(:micropost,
-     user: @user, created_at 1.hour.ago) }
+     user: @user, created_at: 1.hour.ago) }
 
     it "should have microposts in right order" do
       @user.microposts.should == [:newer_post, :older_post ]
     end
+
   end
+
 end

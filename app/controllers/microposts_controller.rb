@@ -1,7 +1,8 @@
 class MicropostsController < ApplicationController
 
-  before_filter :autorizate!
+  #before_filter :autorizate!
   before_filter :correct_user,   only: :destroy
+
   
   def destroy
     @micropost.destroy

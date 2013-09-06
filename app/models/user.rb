@@ -11,7 +11,7 @@
 
 class User < ActiveRecord::Base
   #attr_accessor :password, :password_confirmation
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :login, :password, :password_confirmation
   has_secure_password
 
   has_many :microposts, dependent: :destroy
@@ -28,18 +28,25 @@ class User < ActiveRecord::Base
   before_save :create_remember_token
 
   validates :name, presence: true, length: { maximum: 50, minimum: 3 }
-  validates :email, presence: true
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL },
                     uniqueness: { case_sensitive: false}
 
+  VALID_LOGIN = /\A\w{3,10}\z/i
+  validates :login, presence: true, format: { with: VALID_LOGIN },
+                    uniqueness: { case_sensitive: false }
+
+
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-   def feed
-    # Это предварительное решение. См. полную реализацию в "Following users".
+  def feed    
     Micropost.from_users_followed_by(self)
+  end
+
+  def replyes
+    Micropost.from_users_replyed_to(self)
   end
 
   def following?(other_user)
