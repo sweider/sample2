@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_filter :autorizate!, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_filter :autorizate!, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user?, only: [:edit, :update]
   before_filter :admin_check, only: [:destroy]
 
