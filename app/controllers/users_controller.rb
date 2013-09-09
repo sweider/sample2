@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :autorizate!, exept: [:new, :create, :show]
+  before_filter :autorizate!, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user?, only: [:edit, :update]
   before_filter :admin_check, only: [:destroy]
 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def show 
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = Micropost.for_showing_at_user_home(@user).paginate(page: params[:page])
   end
 
   def create
