@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def show 
     @user = User.find(params[:id])
-    @microposts = Micropost.forShowingAtUserHome(@user).paginate(page: params[:page])
+    @microposts = Micropost.for_showing_at_user_home(@user).paginate(page: params[:page])
   end
 
   def create

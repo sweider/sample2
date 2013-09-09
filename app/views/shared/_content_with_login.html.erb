@@ -1,5 +1,6 @@
 <span class="content">
-    <% if object.in_reply_to_id != nil %>
+    <% if object.in_reply_to_id? %>
+    <!-- I actually don't know how to simplify that =( -->
       <% user =  User.find_by_id(object.in_reply_to_id) %>
       <%= link_to "@#{user.login}", user %>
       <% end %>

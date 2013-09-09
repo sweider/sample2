@@ -10,43 +10,44 @@
 #
 
 class User < ActiveRecord::Base
-  #attr_accessor :password, :password_confirmation
+
+  VALID_LOGIN = /\A\w{3,10}\z/i
+  VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+
   attr_accessible :email, :name, :login, :password, :password_confirmation
   has_secure_password
+
 
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
-
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
                                    dependent:   :destroy
-
   has_many :followers, through: :reverse_relationships
+
+
+  validates :name, presence: true, length: { maximum: 50, minimum: 3 }
+  validates :email, presence: true, format: { with: VALID_EMAIL },
+                    uniqueness: { case_sensitive: false}  
+  validates :login, presence: true, format: { with: VALID_LOGIN },
+                    uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true
+
 
   before_save { email.downcase! }
   before_save :create_remember_token
 
-  validates :name, presence: true, length: { maximum: 50, minimum: 3 }
 
-  VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL },
-                    uniqueness: { case_sensitive: false}
-
-  VALID_LOGIN = /\A\w{3,10}\z/i
-  validates :login, presence: true, format: { with: VALID_LOGIN },
-                    uniqueness: { case_sensitive: false }
-
-
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
 
   def feed    
     Micropost.from_users_followed_by(self)
   end
 
-  def replyes
-    Micropost.from_users_replyed_to(self)
+  def replies
+    Micropost.from_users_replied_to(self)
   end
 
   def following?(other_user)
