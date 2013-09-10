@@ -2,15 +2,18 @@ require 'spec_helper'
 
 describe Micropost do
   let(:user) { FactoryGirl.create( :user ) }
-
+  let(:direct_micropost) {user.microposts.build(content: "@sweider_b alksdjfalkdj")}
+  
   before do
-    @micropost = user.microposts.build(content: "Lorem")
+    @micropost = user.microposts.build(content: "@sweider_b Lorem")
   end
+
   subject { @micropost }
 
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }  
   it { should respond_to(:user) }
+  it { should respond_to(:in_reply_to_id) }
   its(:user) { should == user }
 
   it { should be_valid }
@@ -19,6 +22,12 @@ describe Micropost do
     before { @micropost.user_id = nil }
 
     it { should_not be_valid }
+  end
+
+  describe "should fill in " do
+    before { @micropost.save }
+      
+    its(:in_reply_to_id) { should == 1 }
   end
 
   describe "with blank content" do
@@ -38,4 +47,5 @@ describe Micropost do
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
   end
+
 end

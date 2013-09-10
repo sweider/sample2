@@ -4,6 +4,8 @@ module MicropostsHelper
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
 
+  
+
   private
 
     def wrap_long_string(text, max_width = 30)

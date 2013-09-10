@@ -1,0 +1,11 @@
+<span class="content">
+    <% if object.in_reply_to_id? %>
+    <!-- I actually don't know how to simplify that =( -->
+      <% user =  User.find_by_id(object.in_reply_to_id) %>
+      <%= link_to "@#{user.login}", user %>
+      <% end %>
+    <%= wrap(object.content) %></span>
+
+    <span class="timestamp">
+    Posted <%= time_ago_in_words(object.created_at) %> ago.
+  </span>
