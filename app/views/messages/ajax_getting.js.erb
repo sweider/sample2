@@ -15,7 +15,7 @@ $(document).ready(function(){
   
   messageWindow.modal('show');
 
-  messageWindow.find("button").on("click", function(){    
+  messageWindow.find("#toggle-form").on("click", function(){    
 
     if (<%= own_message %>)
       <% user_id = @message.to %>;
