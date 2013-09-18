@@ -1,0 +1,8 @@
+<div id='message-form'>
+  <%= form_for(current_user.messages.build(to: user_id), remote: true) do |f| %>      
+    <%= f.hidden_field :to %>
+    <%= f.label :content, 'Your message:' %>
+    <%= f.text_area :content%>
+    <%= f.submit 'Send', class: 'btn btn-primary btn-large' %>
+  <% end %>
+</div>

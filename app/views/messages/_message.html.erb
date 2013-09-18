@@ -1,0 +1,22 @@
+<div class="message-container row">
+  <div class="span1">
+    <ul>
+    <% if :outbox %>
+      <%= render 'messages/reciever_link', message: message %>
+    <% else %>
+      <%= render 'messages/sender_link', message: message %>
+    <% end %>    
+    </ul>
+  </div>
+  <div class="span1">
+    <ul>
+      <li><p><%= message.created_at.strftime("%H:%M") %></p></li>
+      <li><p><%= message.created_at.to_date %></p></li>
+    </ul>
+  </div>
+  <div class="span7 message-content">
+      <p><%= cut_message(message.content) %></p>
+      <span class="hidden"><%= message.id %></span>
+  </div>
+</div>
+<hr>

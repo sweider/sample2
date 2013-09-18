@@ -1,0 +1,7 @@
+$("#myModal").find(".close").click();
+var flash = $("<div id='notice' class='alert fade in alert-success'>" + 
+                "<button class='close' data-dismiss='alert'>×</button>" +
+                "<p>Message sent successfully!</p>" +
+              "</div>");
+$('#body-container').prepend(flash);
+$("#notice").slideDown(400).delay(3000).slideUp(400);

@@ -14,15 +14,19 @@ Sample2::Application.routes.draw do
 
   match '/sign_out', to: 'sessions#destroy',  method: "delete"
 
+  match '/message_by_ajax/:id', to: 'messages#ajax_getting'
+
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :messages
     end
   end
 
   resources :sessions, only: [ :new, :create, :destroy ]
 
   resources :microposts, only: [:create, :destroy]
+
+  resources :messages, only: [:create, :destroy]
 
   resources :relationships, only: [:create, :destroy]
 

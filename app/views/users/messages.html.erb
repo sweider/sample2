@@ -1,0 +1,31 @@
+<h1 class="header">Messages</h5>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#tab1" data-toggle="tab">Income <%= @inbox.count %> </a></li>
+    <li><a href="#tab2" data-toggle="tab">Outcome <%= @outbox.count %> </a></li>
+  </ul>
+  <hr>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+    <% if @inbox.any? %>
+      <%= render partial: 'messages/message', collection: @inbox, outbox: false %>
+    <% end %>
+    </div>
+    <div class="tab-pane" id="tab2">
+    <% if @outbox.any? %>
+      <%= render partial: 'messages/message', collection: @outbox, outbox: true %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="messageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" id="modal-close-btn">×</button>
+    <h4 id="messageModalLabelSender">Sender: @<span id="sender"></span></h4>
+    <h5 id="messageModalLabelReciever">To: @<span id="reciever"></span></h5>
+  </div>
+  <div class="modal-body">
+    <%= render 'shared/modal_body', outbox: false  %>
+  </div>
+</div>
