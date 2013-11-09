@@ -1,0 +1,22 @@
+var messageWindow = $("#messageModal");
+var userPage_messageWindow = $("#myModal");
+
+if (messageWindow.length != 0 )
+{
+  messageWindow.find(".close").click();
+  var message = "<%= escape_javascript(render(partial: 'messages/message', locals: {message: @message, outbox: true }) ) %>";
+  $("#tab2").prepend(message);
+  $("#outcome-tab").find("span").text(<%= current_user.messages.count %>)
+}
+
+if(userPage_messageWindow.length != 0 )
+{
+  userPage_messageWindow.find(".close").click();
+}
+
+var flash = $("<div id='notice' class='alert fade in alert-success'>" + 
+                "<button class='close' data-dismiss='alert'>×</button>" +
+                "<p>Message sent successfully!</p>" +
+              "</div>");
+$('#body-container').prepend(flash);
+$("#notice").slideDown(400).delay(3000).slideUp(400);

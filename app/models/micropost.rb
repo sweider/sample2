@@ -28,11 +28,6 @@ class Micropost < ActiveRecord::Base
     where("in_reply_to_id = ?", user.id)
   end
 
-  # def self.for_showing_at_user_home(user)
-  #   where("user_id = :user_id OR in_reply_to_id = :user_id",
-  #     user_id: user.id)
-  # end
-
   def parse_for_login_and_find_user(string)
     login = content.match(/\A@(\w{3,10})/i).try(:[], 1)
     User.find_by_login(login) 

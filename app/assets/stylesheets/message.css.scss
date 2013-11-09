@@ -1,0 +1,39 @@
+.message-container{
+
+  height:75px;
+  cursor:pointer;
+  li{
+    list-style-type: none;
+  }
+
+
+  
+  p{
+    color: #777;
+    line-height: 0.8em;
+  }
+
+  li,img{
+    display: table-row;
+    float: none;
+  }
+
+  .message-content{
+    display: inline-table;
+    height: inherit;
+    text-align:center;
+  }
+  &:hover{
+    background-color: #f4f8ff;
+  }
+}
+
+hr{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width:100%;
+}
+.hidden{
+  display:none;
+}
+

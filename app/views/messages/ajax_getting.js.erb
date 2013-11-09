@@ -1,0 +1,37 @@
+$(document).ready(function(){
+
+  var messageWindow = $("#messageModal");
+  var body_default = "<%= escape_javascript(render 'shared/modal_body') %>";
+  var button_text;
+
+  messageWindow.find("#modal-body").html = body_default;
+  messageWindow.find("#sender").text("<%= @sender.login %>");
+  messageWindow.find("#reciever").text("<%= @reciever.login %>");
+  messageWindow.find("#message-text").text(" <%= wrap(@message.content) %>");
+  CreateForm();  
+  
+  messageWindow.modal('show');
+  
+  function CreateForm(){  
+    if ($('#message-form').length == 0)
+    {
+      var form;
+      
+      if (<%= @own_message %>)
+        form = "<%=  escape_javascript(render 'users/new_message_form', user_id: @message.to) %>"
+      else
+        form = "<%=  escape_javascript(render 'users/new_message_form', user_id: @message.user_id) %>";
+      
+      messageWindow.find(".modal-body").append(form);
+    }
+  }
+
+  messageWindow.find("#modal-close-btn").on("click", function(){
+    messageWindow.modal("hide");
+  });
+
+  messageWindow.on("hide", function(){
+    $("#message-form").remove();
+  });
+
+});

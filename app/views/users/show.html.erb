@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span3">
+  <aside class="span3" style="margin-top:0.9em;">
     <section>
       <h1>
         <%= gravatar_for @user %>
@@ -8,10 +8,15 @@
       </h1>
       <h2><%= @user.login %></h2>
     </section>
+    <section>
+      <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal" style="margin-bottom:0.5em">Send a message</a> 
+      <br>
+      <%= render 'follow_form' if signed_in? %>
+    </section>
   </aside>
 
-<div class="span8">
-  <%= render 'follow_form' if signed_in? %>
+  <div class="span8">
+  
     <% if @microposts.any? %>
       <h3>Microposts (<%= @microposts.count %>)</h3>
       <ol class="microposts">
@@ -21,3 +26,5 @@
     <% end %>
   </div>
 </div>
+
+<%= render "message_modal" %>
