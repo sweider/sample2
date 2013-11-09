@@ -2,18 +2,18 @@
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-pills">
     <li class="active"><a href="#tab1" data-toggle="tab">Income <%= @inbox.count %> </a></li>
-    <li><a href="#tab2" data-toggle="tab">Outcome <%= @outbox.count %> </a></li>
+    <li><a href="#tab2" data-toggle="tab" id="outcome-tab">Outcome <span><%= @outbox.count %></span></a></li>
   </ul>
   <hr>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
     <% if @inbox.any? %>
-      <%= render partial: 'messages/message', collection: @inbox, outbox: false %>
+      <%= render partial: 'messages/message', collection: @inbox, locals: { outbox: false } %>
     <% end %>
     </div>
     <div class="tab-pane" id="tab2">
     <% if @outbox.any? %>
-      <%= render partial: 'messages/message', collection: @outbox, outbox: true %>
+      <%= render partial: 'messages/message', collection: @outbox, locals: { outbox: true } %>
     <% end %>
     </div>
   </div>
@@ -26,6 +26,10 @@
     <h5 id="messageModalLabelReciever">To: @<span id="reciever"></span></h5>
   </div>
   <div class="modal-body">
-    <%= render 'shared/modal_body', outbox: false  %>
+    <h4>Message:</h4>
+    <div id="message-text"></div>
+    <hr>
+    <div id="outer_message_form">
+    </div>
   </div>
 </div>

@@ -1,0 +1,21 @@
+$(document).ready(function(){
+
+  $(".message-container").on("click", function(){
+    var message_id = $(this).find(".hidden").text();
+    var the_url = '/message_by_ajax/' + message_id;
+    $.ajax({url: the_url});
+  });
+  
+
+  var messageWindow = $("#messageModal");
+  messageWindow.find("#modal-close-btn").on("click", function(){
+    messageWindow.modal("hide");
+  });
+
+  messageWindow.on("hide", function(){
+    $("#message-form").remove();
+  });
+
+
+
+});

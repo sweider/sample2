@@ -1,16 +1,17 @@
-<h1 class="header">Messages</h5>
-<div class="tabbable"> <!-- Only required for left/right tabs -->
+<!-- <h1 class="header">Messages</h5>
+<div class="tabbable"> 
   <ul class="nav nav-pills">
     <li class="active"><a href="#tab1" data-toggle="tab">Income <%= messages_count(@inbox) %> </a></li>
-    <li><a href="#tab2" data-toggle="tab">Outcome</a></li>
+    <li><a href="#tab2" data-toggle="tab">Outcome blablalba</a></li>
   </ul>
   <hr>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <%= render partial: 'messages/message', collection: @inbox %>
+      <%= render partial: 'messages/message', collection: @inbox, outbox: false %>
     </div>
     <div class="tab-pane" id="tab2">
-      <%= render partial: 'messages/message', collection: @outbox %>
+      <%= render partial: 'messages/message', collection: @outbox, outbox: true %>
     </div>
   </div>
 </div>
+ -->

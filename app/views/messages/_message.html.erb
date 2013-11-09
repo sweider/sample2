@@ -1,7 +1,7 @@
 <div class="message-container row">
   <div class="span1">
     <ul>
-    <% if :outbox %>
+    <% if ( outbox == true) %>
       <%= render 'messages/reciever_link', message: message %>
     <% else %>
       <%= render 'messages/sender_link', message: message %>

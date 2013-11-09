@@ -2,7 +2,7 @@
   <%= form_for(current_user.messages.build(to: user_id), remote: true) do |f| %>      
     <%= f.hidden_field :to %>
     <%= f.label :content, 'Your message:' %>
-    <%= f.text_area :content%>
-    <%= f.submit 'Send', class: 'btn btn-primary btn-large' %>
+    <%= f.text_area :content, id:"ajax_answer_text-area"%>
+    <%= f.submit 'Send', class: 'btn btn-primary', id:"submit-btn" %>
   <% end %>
 </div>
