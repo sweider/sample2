@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $(".message-container").on("click", function(){
+  $(".tab-pane").on("click", ".message-container", function(){
     var message_id = $(this).find(".hidden").text();
     var the_url = '/message_by_ajax/' + message_id;
     $.ajax({url: the_url});

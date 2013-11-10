@@ -5,7 +5,7 @@ if (messageWindow.length != 0 )
 {
   messageWindow.find(".close").click();
   var message = "<%= escape_javascript(render(partial: 'messages/message', locals: {message: @message, outbox: true }) ) %>";
-  $("#tab2").prepend(message);
+  $("#tab2").prepend(message);  
   $("#outcome-tab").find("span").text(<%= current_user.messages.count %>)
 }
 
