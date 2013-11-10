@@ -60,6 +60,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def messages
+    @inbox = Message.messages_to(current_user)
+    @outbox = current_user.messages
+  end
 
 
   private 

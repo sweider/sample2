@@ -8,6 +8,13 @@ namespace :db do
     make_relationships
   end
 
+  task add_messages: :environment do
+    users = User.limit(10)
+    users.each do |u|
+      5.times { u.messages.create(content: Faker::Lorem.paragraph, to: rand(users.count)) }
+    end
+  end
+
   def make_relationships
     users = User.all
     user  = users.first
